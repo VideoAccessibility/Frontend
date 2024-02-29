@@ -68,6 +68,7 @@ export default class YouTube extends Component {
             this.props.onReady()
           },
           onPlaybackRateChange: event => this.props.onPlaybackRateChange(event.data),
+          onPlaybackQualityChange: event => this.props.onPlaybackQualityChange(event),
           onStateChange: this.onStateChange,
           onError: event => onError(event.data)
         },
@@ -143,9 +144,9 @@ export default class YouTube extends Component {
     this.callPlayer('stopVideo')
   }
 
-  seekTo (amount) {
+  seekTo (amount, keepPlaying = false) {
     this.callPlayer('seekTo', amount)
-    if (!this.props.playing) {
+    if (!keepPlaying && !this.props.playing) {
       this.pause()
     }
   }

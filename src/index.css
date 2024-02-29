@@ -11,8 +11,9 @@ a {
 }
 
 .full-width{
-  display:inline-block;
-  width: 100%;  
+  /* display:inline-block; */
+  width: 100%;
+  display: block;
 }
 
 ::-webkit-scrollbar {
@@ -65,6 +66,19 @@ a {
   margin: 10px 0px;
   border-radius: 10px;
   transition: all 0.3s ease;
+}
+/* This part if in the add descriptions jsx where I want to highlight the recently added frame */
+@keyframes highlight {
+  from {
+    background-color: #EF6262;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.recently-added {
+  animation: highlight 3s ease;
 }
 
 @media screen and (max-width: 900px) {

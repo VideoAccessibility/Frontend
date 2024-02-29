@@ -2,13 +2,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BugReportIcon from '@mui/icons-material/BugReport';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
 
 export const categories = [
   { name: 'Home', icon: <HomeIcon />,  href: '/'},
-  { name: 'Described', icon: <KeyboardVoiceIcon />,  href: '/UploadVideo'},
-  { name: 'Issues', icon: <BugReportIcon />,  href: '/IssuesPage' },
   { name: 'Upload', icon: <FileUploadIcon />, href: '/UploadVideo'},
+  { name: 'Use URL', icon: <YouTubeIcon />, href: '/UploadUrl'},
 ];
 
 export const demoThumbnailUrl = 'https://i.ibb.co/G2L2Gwp/API-Course.png';

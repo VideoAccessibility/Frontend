@@ -1,45 +1,41 @@
-import React, { useState, useRef } from 'react';
+import {React , useState, useEffect, useRef} from 'react';
+import ReactPlayer from 'react-player';
+import { Box, Grid, Typography, Paper } from "@mui/material";
+import { TextToSpeech } from "./";
 
+const Player = (props) => {
+    const [played, setPlayed] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(true);
+    const video = "http://127.0.0.1:8000/" + props.path; 
+    // const video = "http://127.0.0.1:8000/" + props.path;
+    // console.log("this is my video path", video)
+    const playerRef = props.playerRef;
 
-const Player = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [progress, setProgress] = useState(0);
-    const videoRef = useRef(null);
-
-    const togglePlay = () => {
-        if (isPlaying) {
-            videoRef.current.pause();
-        } else {
-            videoRef.current.play();
-        }
-        setIsPlaying(!isPlaying);
+      // Function to seek to a specific timestamp
+    const seekToTimestamp = (timestamp) => {
+      if (playerRef.current) {
+        playerRef.current.seekTo(timestamp, 'seconds');
+      }
     };
+    useEffect(() => {
+      // Notify the parent component about the played timestamp
+      props.parentCallback(played);
+    }, [played]);
 
-    const handleProgress = () => {
-        const duration = videoRef.current.duration;
-        const currentTime = videoRef.current.currentTime;
-        const progress = (currentTime / duration) * 100;
-        setProgress(progress);
-    };
-
-    return (
-        <div>
-            <video
-                onTimeUpdate={handleProgress}
-                ref={videoRef}
-                width="100%"
-                height="100%"
-                controls
-            >
-                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-            </video>
-            <div>
-                <button onClick={togglePlay}>
-                    {isPlaying ? "Pause" : "Play"}
-                </button>
-                <progress value={progress} max="100" />
-            </div>
-        </div>
+    return(
+    <div>
+    <ReactPlayer 
+    ref={playerRef}
+    url={video}
+    playing={isPlaying}
+    controls={true} 
+    width={"100%"}
+    height={"50vh"}
+    onProgress={(progress) => {
+       setPlayed(Math.floor(progress.playedSeconds));
+     }}
+    />
+    </div>
     )
 }
 

@@ -6,6 +6,10 @@ import { canPlay } from '../patterns'
 const SDK_URL = 'https://player.vimeo.com/api/player.js'
 const SDK_GLOBAL = 'Vimeo'
 
+const cleanUrl = url => {
+  return url.replace('/manage/videos', '')
+}
+
 export default class Vimeo extends Component {
   static displayName = 'Vimeo'
   static canPlay = canPlay.vimeo
@@ -25,7 +29,7 @@ export default class Vimeo extends Component {
       if (!this.container) return
       const { playerOptions, title } = this.props.config
       this.player = new Vimeo.Player(this.container, {
-        url,
+        url: cleanUrl(url),
         autoplay: this.props.playing,
         muted: this.props.muted,
         loop: this.props.loop,
@@ -86,8 +90,11 @@ export default class Vimeo extends Component {
     this.callPlayer('unload')
   }
 
-  seekTo (seconds) {
+  seekTo (seconds, keepPlaying = true) {
     this.callPlayer('setCurrentTime', seconds)
+    if (!keepPlaying) {
+      this.pause()
+    }
   }
 
   setVolume (fraction) {

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Box, createTheme, ThemeProvider} from '@mui/material';
 
 
-import {Home, EditDescriptionPage, Issues, UploadVideo, IssuesPage, SignIn} from './components';
+import {Home, EditDescriptionPage, Issues, UploadVideo, IssuesPage, SignIn, UploadUrl, EditDescriptions, AddDescriptions, SRPage, SignUp, VideoSearch} from './components';
 import VideoPage from './components/VideoPage';
 
 const theme = createTheme({
@@ -18,6 +18,20 @@ const theme = createTheme({
         light: '#EF6262',
         contrastText: 'white',
       },
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
     },
   });
 
@@ -35,6 +49,13 @@ const App = () => (
             <Route path='/UploadVideo' element={<UploadVideo/>} />
             <Route path='/IssuesPage' element={<IssuesPage/>} />
             <Route path='/SignIn' element={<SignIn/>} />
+            <Route path='/UploadUrl' element={<UploadUrl/>} />
+            <Route path='/EditDescriptions' element={<EditDescriptions/>} />
+            <Route path='/AddDescriptions' element={<AddDescriptions/>} />
+            <Route path='/SR' element={<SRPage/>} />
+            <Route path='/SignUp' element={<SignUp/>} />
+            <Route path="/video-search/:searchQuery" element={<VideoSearch />} />
+            
         </Routes>
     </Box>
     </BrowserRouter>

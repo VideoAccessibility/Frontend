@@ -8,14 +8,22 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/lab": "^5.0.0-alpha.140",
     "@mui/material": "^5.14.5",
+    "@mui/x-date-pickers": "^6.18.0",
+    "@types/dom-speech-recognition": "^0.0.4",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.10",
+    "fluent-ffmpeg": "^2.1.2",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-player": "^2.10.1",
+    "react-player": "^2.13.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "react-speech-kit": "^3.0.1",
+    "react-speech-recognition": "^3.10.0",
+    "sweetalert2": "^11.7.28"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -40,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-video-thumbnail": "^0.1.3"
   }
 }

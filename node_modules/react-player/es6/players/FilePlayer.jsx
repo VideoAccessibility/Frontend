@@ -24,8 +24,11 @@ export default class FilePlayer extends Component {
   componentDidMount () {
     this.props.onMount && this.props.onMount(this)
     this.addListeners(this.player)
-    this.player.src = this.getSource(this.props.url) // Ensure src is set in strict mode
-    if (IS_IOS) {
+    const src = this.getSource(this.props.url) // Ensure src is set in strict mode
+    if (src) {
+      this.player.src = src
+    }
+    if (IS_IOS || this.props.config.forceDisableHls) {
       this.player.load()
     }
   }
@@ -38,14 +41,15 @@ export default class FilePlayer extends Component {
 
     if (
       this.props.url !== prevProps.url &&
-      !isMediaStream(this.props.url)
+      !isMediaStream(this.props.url) &&
+      !(this.props.url instanceof Array) // Avoid infinite loop
     ) {
       this.player.srcObject = null
     }
   }
 
   componentWillUnmount () {
-    this.player.src = ''
+    this.player.removeAttribute('src')
     this.removeListeners(this.player)
     if (this.hls) {
       this.hls.destroy()
@@ -138,13 +142,10 @@ export default class FilePlayer extends Component {
   }
 
   shouldUseHLS (url) {
-    if (this.props.config.forceHLS) {
+    if ((IS_SAFARI && this.props.config.forceSafariHLS) || this.props.config.forceHLS) {
       return true
     }
-    if (IS_SAFARI && this.props.config.forceSafariHLS) {
-      return true
-    }
-    if (IS_IOS) {
+    if (IS_IOS || this.props.config.forceDisableHls) {
       return false
     }
     return HLS_EXTENSIONS.test(url) || MATCH_CLOUDFLARE_STREAM.test(url)
@@ -243,8 +244,11 @@ export default class FilePlayer extends Component {
     }
   }
 
-  seekTo (seconds) {
+  seekTo (seconds, keepPlaying = true) {
     this.player.currentTime = seconds
+    if (!keepPlaying) {
+      this.pause()
+    }
   }
 
   setVolume (fraction) {
