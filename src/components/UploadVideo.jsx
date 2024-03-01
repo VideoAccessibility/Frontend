@@ -72,7 +72,7 @@ const UploadVideo = () => {
     const token = Cookies.get("jwtToken");
 
     // check if user is logged out or if token is expired
-    if (!token || !tokenUsable(token)) {
+    if (!token) {
       setAlertOpen(true);
       return;
     }

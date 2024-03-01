@@ -34,6 +34,8 @@ const TextToSpeech = ({ text, parentCallback }) => {
     };
   }, [text, voice, pitch, rate, volume, isPaused]);
 
+
+
   const handlePause = () => {
     const synth = window.speechSynthesis;
     synth.pause();

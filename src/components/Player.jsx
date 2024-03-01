@@ -30,7 +30,7 @@ const Player = (props) => {
     playing={isPlaying}
     controls={true} 
     width={"100%"}
-    height={"50vh"}
+    height={"500px"}
     onProgress={(progress) => {
        setPlayed(Math.floor(progress.playedSeconds));
      }}

@@ -149,7 +149,7 @@ const VideoPage = () => {
               />
             )}
             {!noDescription && (
-              <Player path={video.video_path} parentCallback={handleCallback} />
+              <Player path={ensureVideoUrlFormat(video.video_path)} parentCallback={handleCallback} />
             )}
             {!noDescription && (
               <div>

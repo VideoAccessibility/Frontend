@@ -3,6 +3,22 @@ import { Box, Stack, Typography, Grid, TextField, Button } from "@mui/material";
 import { Sidebar, Player, Scene, Navbar, Notes, Frame } from "./";
 import { useLocation, Link } from "react-router-dom";
 
+function ensureVideoUrlFormat(url) {
+  // Check if url is null or undefined
+  if (url == null) {
+    console.error("Error: URL is null or undefined");
+    return null; // Return null in case of error
+  }
+
+  // Check if the URL already starts with "videos/"
+  if (!url.startsWith("videos/")) {
+    // If not, prepend "videos/" to the URL
+    url = "videos/" + url;
+  }
+  return url;
+}
+
+
 const EditDescriptions = () => {
   const [selectedCategory, setSelectedCategory] = useState();
   const [yesFrame, setYesFrame] = useState(false);
@@ -40,7 +56,7 @@ const EditDescriptions = () => {
           sx={{ overflowY: "auto", height: "90vh", flex: 2 }}
         >
           <Grid item xs={12} md={8}>
-            <Player path={video_path} parentCallback={handleCallback} />
+            <Player path={ensureVideoUrlFormat(video_path)} parentCallback={handleCallback} />
           </Grid>
           {/* CHANGE THIS FROM HARD CODING */}
           <Notes videoId={video_id} />
