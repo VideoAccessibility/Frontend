@@ -9,7 +9,7 @@ const Home = () => {
   const [videoList, setVideoList] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const apiUrl = "http://127.0.0.1:8000/api/all_videos/";
+  const apiUrl = "https://vidscribe.org/api/all_videos/";
 
   useEffect(() => {
     const jwtToken = Cookies.get("jwtToken"); // Get JWT token from cookies

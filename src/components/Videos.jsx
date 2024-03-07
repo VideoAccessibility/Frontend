@@ -24,7 +24,7 @@ function transformPath(path) {
       path = "videos/" + path;
     }
     // Replace the file extension with ".png"
-    return "http://127.0.0.1:8000/" + path.replace(/\.mp4$/, '.png');
+    return "https://vidscribe.org/" + path.replace(/\.mp4$/, '.png');
   } else {
     // Handle the case where path is null or undefined
     return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg";
