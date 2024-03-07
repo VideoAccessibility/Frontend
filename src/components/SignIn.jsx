@@ -13,7 +13,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
-const apiUrl = "http://127.0.0.1:8000/login/";
+const apiUrl = "https://vidscribe.org/login/";
 
 export default function SignIn() {
   const [heading, setHeading] = useState("");

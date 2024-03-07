@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import formatTime from "../utils/functions";
 
 const Comment = (props) => {
-  const apiUrl = "http://127.0.0.1:8000/api/ask_question/";
+  const apiUrl = "https://vidscribe.org/api/ask_question/";
   const token = Cookies.get("jwtToken");
   const [comments, setComments] = useState([]);
   const [isLoading, setLoading] = useState(true);

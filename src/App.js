@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Box, createTheme, ThemeProvider} from '@mui/material';
 
 
-import {Home, EditDescriptionPage, Issues, UploadVideo, IssuesPage, SignIn, UploadUrl, EditDescriptions, AddDescriptions, SRPage, SignUp, VideoSearch} from './components';
+import {Home, EditDescriptionPage, UploadVideo, SignIn, UploadUrl, EditDescriptions, AddDescriptions, SRPage, SignUp, VideoSearch} from './components';
 import VideoPage from './components/VideoPage';
 
 const theme = createTheme({
@@ -45,9 +45,7 @@ const App = () => (
             <Route path='/' exact element={<Home />} />
             <Route path='/VideoPage' element={<VideoPage/>} />
             <Route path='/EditDescriptionPage' element={<EditDescriptionPage/>} />
-            <Route path='/Issues' element={<Issues/>} />
             <Route path='/UploadVideo' element={<UploadVideo/>} />
-            <Route path='/IssuesPage' element={<IssuesPage/>} />
             <Route path='/SignIn' element={<SignIn/>} />
             <Route path='/UploadUrl' element={<UploadUrl/>} />
             <Route path='/EditDescriptions' element={<EditDescriptions/>} />

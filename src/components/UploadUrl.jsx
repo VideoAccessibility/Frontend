@@ -64,7 +64,7 @@ const UploadUrl = () => {
 
   const handleURLUpload = () => {
     const token = Cookies.get("jwtToken");
-    const apiUrl = "http://127.0.0.1:8000/api/youtube_video/";
+    const apiUrl = "https://vidscribe.org/api/youtube_video/";
 
     const postData = {
       youtube_url: url,

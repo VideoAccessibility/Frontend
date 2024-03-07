@@ -27,7 +27,7 @@ function Copyright(props) {
   );
 }
 
-const apiUrl = "http://127.0.0.1:8000/register/";
+const apiUrl = "https://vidscribe.org/register/";
 
 export default function SignUp() {
   const [heading, setHeading] = useState("");

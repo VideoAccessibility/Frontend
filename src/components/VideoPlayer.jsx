@@ -5,7 +5,7 @@ import formatTime from "../utils/functions";
 
 const VideoPlayer = (props) => {
   // const video = require("./" + props.path);
-  const video = "http://127.0.0.1:8000/" + props.path;
+  const video = "https://vidscribe.org/" + props.path;
   // console.log("this is my video path", video)
   const defaultDescription = {
     descriptions: "No description playing",

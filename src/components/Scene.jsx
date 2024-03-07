@@ -25,7 +25,7 @@ const Scene = ({id}) => {
   const [isLoading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const url = "http://127.0.0.1:8000/descriptions/";
+  const url = "https://vidscribe.org/descriptions/";
   const token = Cookies.get("jwtToken");
   const parameters = { video_id: id, jwt: token };
 
@@ -81,7 +81,7 @@ const Scene = ({id}) => {
       console.log("here is the updated info", selectedDescriptionId, editedDescription)
   
       axios
-        .put(`http://127.0.0.1:8000/descriptions/`, updatedDescription)
+        .put(`https://vidscribe.org/descriptions/`, updatedDescription)
         .then((response) => {
           console.log('Description updated successfully:', response.data.message);
   

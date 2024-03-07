@@ -6,7 +6,7 @@ import { TextToSpeech } from "./";
 const Player = (props) => {
     const [played, setPlayed] = useState(0);
     const [isPlaying, setIsPlaying] = useState(true);
-    const video = "http://127.0.0.1:8000/" + props.path; 
+    const video = "https://vidscribe.org/" + props.path; 
     // const video = "http://127.0.0.1:8000/" + props.path;
     // console.log("this is my video path", video)
     const playerRef = props.playerRef;
