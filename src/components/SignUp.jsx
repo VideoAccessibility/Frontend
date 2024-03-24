@@ -27,7 +27,7 @@ function Copyright(props) {
   );
 }
 
-const apiUrl = "https://vidscribe.org/register/";
+const apiUrl = "https://vidscribe.org/b/register/";// "https://vidscribe.org/b/register/";
 
 export default function SignUp() {
   const [heading, setHeading] = useState("");
