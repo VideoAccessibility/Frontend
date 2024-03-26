@@ -12,7 +12,7 @@ const VideoSearch = () => {
   const [filteredVideos, setFilteredVideos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const apiUrl = "https://vidscribe.org/api/all_videos/";
+  const apiUrl = "https://vidscribe.org/b/api/all_videos/";
 
   useEffect(() => {
     const jwtToken = Cookies.get("jwtToken");

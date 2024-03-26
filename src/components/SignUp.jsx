@@ -59,7 +59,7 @@ export default function SignUp() {
         console.log("Sign Up successful! Token:", token);
         Cookies.set("jwtToken", token, { expires: 3 });
         setHeading("Sign Up Successful");
-        navigate("/");
+        navigate("/SignUp");
       })
       .catch((error) => {
         // Handle sign-up errors

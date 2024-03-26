@@ -120,7 +120,7 @@ const AskAI = (props) => {
     setLoading(true);
     const token = Cookies.get("jwtToken");
     // Define the API endpoint where you want to send the POST request
-    const apiUrl = "https://vidscribe.org/api/ask_question/";
+    const apiUrl = "https://vidscribe.org/b/api/ask_question/";
     console.log("This is my props id", props.videoID);
     const postData = {
       id: props.videoID,

@@ -47,11 +47,11 @@ const VideoPage = () => {
   const location = useLocation();
   const { video_id, path } = location.state;
 
-  const apiUrl = "https://vidscribe.org/api/video/";
+  const apiUrl = "https://vidscribe.org/b/api/video/";
   const token = Cookies.get("jwtToken");
 
   const params = { id: video_id, jwt: token };
-  const url = "https://vidscribe.org/descriptions/";
+  const url = "https://vidscribe.org/b/descriptions/";
   const parameters = { video_id: video_id };
 
   useEffect(() => {

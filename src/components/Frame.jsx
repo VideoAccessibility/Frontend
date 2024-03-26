@@ -16,7 +16,7 @@ const Frame = (props) => {
     const token = Cookies.get("jwtToken");
 
     // Define the API endpoint where you want to send the POST request
-    const apiUrl = "https://vidscribe.org/descriptions/";
+    const apiUrl = "https://vidscribe.org/b/descriptions/";
 
     const postData = {
         "video_id": props.id,

@@ -14,7 +14,7 @@ const EditDescriptionPage = () => {
   const [played, setPlayed] = useState();
   const [videoDescriptions, setVideoDescriptions] = useState([]);
 
-  const apiUrl = "https://vidscribe.org/descriptions/";
+  const apiUrl = "https://vidscribe.org/b/descriptions/";
   const token = Cookies.get("jwtToken");
 
   const params = {

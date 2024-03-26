@@ -86,7 +86,7 @@ const UploadVideo = () => {
     console.log("This is my form data", visibility);
 
     // Define the API endpoint where you want to send the POST request
-    const apiUrl = "https://vidscribe.org/api/upload/";
+    const apiUrl = "https://vidscribe.org/b/api/upload/";
 
     // Seting the page to loading
     setHeading("Your file is being loaded, do not refresh page the page");

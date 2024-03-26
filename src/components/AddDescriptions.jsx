@@ -131,7 +131,7 @@ const AddDescriptions = () => {
     try {
       for (let frame of frames) {
         // Assuming you have an API endpoint for posting descriptions, adjust the URL accordingly
-        const apiUrl = "https://vidscribe.org/descriptions/";
+        const apiUrl = "https://vidscribe.org/b/descriptions/";
         const token = Cookies.get("jwtToken");
         const response = await axios.post(apiUrl, {
           video_id: video_id,
