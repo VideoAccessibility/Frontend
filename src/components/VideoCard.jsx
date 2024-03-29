@@ -5,27 +5,24 @@ import { Typography, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const VideoCard = (props) => (
-  
+  <Link to="/VideoPage" state={{ path: props.path, video_id : props.id }}>
   <Card 
   sx={{ 
     width: { xs: '100%', sm: '350px', md: "270px", }, 
     boxShadow: "none", 
     borderRadius: "10px" }}>
     {/* passing the video path to the video page */}
-    <Link to="/VideoPage" state={{video_id : props.id }}>
       <CardMedia image={props.image} 
         sx={{ 
           width: { xs: '350px', sm: '350px',md: "270px", }, 
           height: 180 }} 
       />
-    </Link>
 
     <CardContent 
     sx={{ 
       backgroundColor: "primary.main", 
       height: '100px' }}>
 
-      <Link to="/VideoPage" state={{ path: props.path, video_id : props.id }}>
         <Typography 
         variant="subtitle1" 
         fontWeight="bold" 
@@ -33,9 +30,6 @@ const VideoCard = (props) => (
         {/* The slice function is  used to reduce the title length to 60*/}
           {props.title.slice(0, 60)}
         </Typography>
-
-      </Link>
-      <Link to="/VideoPage" state={{ path: props.path, video_id : props.id }}>
 
         {/* <Typography variant="subtitle2" color="primary.dark">
           {props.channelTitle}
@@ -47,10 +41,9 @@ const VideoCard = (props) => (
                 Described by AI
         </Typography>
         </Grid>
-
-      </Link>
     </CardContent>
   </Card>
+  </Link>
 );
 
 export default VideoCard

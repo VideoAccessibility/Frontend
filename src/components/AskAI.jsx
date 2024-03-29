@@ -26,6 +26,9 @@ const AskAI = (props) => {
   const [response, setResponse] = React.useState("");
   const [startOrStop, setStartOrStop] = React.useState("Stop");
 
+  const synth = window.speechSynthesis;
+  const voices = synth.getVoices();
+
   const playBeep = (type) => {
     var audioStart = new Audio(require('../data/beepStop.mp3')) 
     if (type === "start"){
@@ -73,7 +76,7 @@ const AskAI = (props) => {
     const token = Cookies.get("jwtToken");
     if (!token || !tokenUsable(token)){
       return(
-        <AlertBar/>
+        alert("You must be signed in to ask AI questions")
       )
     }
 
@@ -84,6 +87,7 @@ const AskAI = (props) => {
 
   const handleClose = () => {
     setOpen(false);
+    synth.cancel();
     SpeechRecognition.stopListening()
     setResponse("")
     resetTranscript();
@@ -134,8 +138,6 @@ const AskAI = (props) => {
       .then((response) => {
         // Handle the successful response
         console.log("Response:", response.data);
-        const synth = window.speechSynthesis;
-        const voices = synth.getVoices();
         const newUtterance = new SpeechSynthesisUtterance("Response: "+ response.data.answer);
         newUtterance.voice = voices.find((v) => v.name === "Google US English");
         synth.speak(newUtterance);

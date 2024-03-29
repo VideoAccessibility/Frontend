@@ -36,7 +36,7 @@ const Navbar = () => {
       }}>
     {/* This displays the logo */}
     <Link to="/" style={{ display: "flex", alignItems: "center" }}>
-      <img src={logo} alt="logo" height={45} />
+      <img src={require("../utils/ViDscribelogos.png")} alt="logo" width={150}/>
     </Link>
 
     <SearchBar />

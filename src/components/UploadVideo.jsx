@@ -89,7 +89,7 @@ const UploadVideo = () => {
     const apiUrl = "https://vidscribe.org/b/api/upload/";
 
     // Seting the page to loading
-    setHeading("Your file is being loaded, do not refresh page the page");
+    setHeading("Your file is being loaded, do not refresh page.");
     setSmallHeading(
       "You will be redirected to the video page when the video is described"
     );

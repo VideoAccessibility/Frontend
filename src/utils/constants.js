@@ -3,7 +3,7 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
+export const logo = './viLogo.png';
 
 export const categories = [
   { name: 'Home', icon: <HomeIcon />,  href: '/'},
