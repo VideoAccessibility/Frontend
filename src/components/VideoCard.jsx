@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { Typography, Card, CardContent, CardMedia, Grid} from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
-const VideoCard = (props) => (
-  <Link to="/VideoPage" state={{ path: props.path, video_id : props.id }}>
+const VideoCard = (props) => {
+  const video_id = props.id;
+  return(
+  <Link to={`/VideoPage/${video_id}`}>
   <Card 
   sx={{ 
     width: { xs: '100%', sm: '350px', md: "270px", }, 
@@ -44,6 +46,6 @@ const VideoCard = (props) => (
     </CardContent>
   </Card>
   </Link>
-);
+)};
 
 export default VideoCard

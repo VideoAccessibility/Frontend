@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Alert, AlertTitle, Snackbar } from "@mui/material";
 
-const AlertBar = () => {
+const AlertBar = ({alertText, parentCallback}) => {
   const [alertOpen, setAlertOpen] = useState(true);
 
   const handleAlertClose = () => {
     setAlertOpen(false);
+    parentCallback();
   };
 
   return (
@@ -17,7 +18,7 @@ const AlertBar = () => {
     >
       <Alert severity="error" onClose={handleAlertClose}>
         <AlertTitle>Authentication Error</AlertTitle>
-        You need to be logged in to upload a video.
+        {alertText}
       </Alert>
     </Snackbar>
   );

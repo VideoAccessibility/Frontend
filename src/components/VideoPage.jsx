@@ -10,11 +10,12 @@ import {
   Player,
   AlertBar,
 } from "./";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import formatTime from "../utils/functions";
 import tokenUsable from "../utils/loggedIn";
+import { useParams } from "react-router-dom";
 
 function ensureVideoUrlFormat(url) {
   // Check if url is null or undefined
@@ -33,6 +34,9 @@ function ensureVideoUrlFormat(url) {
 
 const VideoPage = () => {
   const [isLoading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [alerttext, setAlerttext] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [played, setPlayed] = useState(0);
   const [desc, setDesc] = useState();
@@ -40,15 +44,22 @@ const VideoPage = () => {
   const [video, setVideo] = useState([]);
   const [turnOnOff, setturnOnOff] = useState("off");
   const [descOn, setDescOn] = useState(true);
+  const { video_id } = useParams();
+  const navigate = useNavigate();
 
   // these are some error handling checks that I am doing
   const [noDescription, setNoDescription] = useState(false);
 
-  const location = useLocation();
-  const { video_id, path } = location.state;
 
   const apiUrl = "https://vidscribe.org/b/api/video/";
   const token = Cookies.get("jwtToken");
+
+  // checking if the user is logged in
+  useEffect(() => {
+    if (!token) {
+      setIsLoggedIn(false);
+    }
+  }, []); // This effect runs only once, on component mount
 
   const params = { id: video_id, jwt: token };
   const url = "https://vidscribe.org/b/descriptions/";
@@ -105,6 +116,28 @@ const VideoPage = () => {
     setDescUser(filteredDescriptions);
   };
 
+  const handleCloseAlertCallback = () => {
+    setShowAlert();
+  };
+
+  const handleEditDescriptions= () => {
+    if (!isLoggedIn){
+      setShowAlert(true)
+      setAlerttext("to edit descriptions")
+    }else{
+      navigate("/EditDescriptions", {state:{ video_id: video_id, video_path: video.video_path }})
+    }
+  }
+
+  const handleAddDescriptions= () => {
+    if (!isLoggedIn){
+      setShowAlert(true)
+      setAlerttext("to add descriptions")
+    }else{
+      navigate("/AddDescriptions", {state:{ video_id: video_id, video_path: video.video_path }})
+    }
+  }
+
   const handleViewDescriptions = () => {
     if (turnOnOff === "off") {
       setturnOnOff("on");
@@ -117,6 +150,11 @@ const VideoPage = () => {
 
   return (
     <div>
+      {showAlert && 
+      <AlertBar 
+      alertText={"You need to have an account "+alerttext}
+      parentCallback={handleCloseAlertCallback}
+      />}
       <Navbar />
       <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
         <Box sx={{ height: { sx: "auto", md: "100vh" } }}>
@@ -209,10 +247,6 @@ const VideoPage = () => {
 
               <AskAI videoID={video_id} timeStamp={played} />
 
-              <Link
-                to="/AddDescriptions"
-                state={{ video_id: video_id, video_path: video.video_path }}
-              >
                 <Button
                   sx={{
                     backgroundColor: "secondary.main",
@@ -221,15 +255,11 @@ const VideoPage = () => {
                     marginTop: "10px",
                   }}
                   className="category-btn"
+                  onClick={handleAddDescriptions}
                 >
                   Add description
                 </Button>
-              </Link>
               {noDescription && (
-                <Link
-                  to="/EditDescriptions"
-                  state={{ video_id: video_id, video_path: video.video_path }}
-                >
                   <Button
                     sx={{
                       backgroundColor: "secondary.main",
@@ -238,10 +268,10 @@ const VideoPage = () => {
                       marginTop: "10px",
                     }}
                     className="category-btn"
+                    onClick={handleEditDescriptions}
                   >
                     Edit descriptions
                   </Button>
-                </Link>
               )}
             </Box>
           </Grid>

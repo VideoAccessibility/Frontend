@@ -43,7 +43,7 @@ const App = () => (
         <Routes>
         {/* Home here is the feed */}
             <Route path='/' exact element={<Home />} />
-            <Route path='/VideoPage' element={<VideoPage/>} />
+            <Route path='/VideoPage/:video_id' element={<VideoPage/>} />
             <Route path='/EditDescriptionPage' element={<EditDescriptionPage/>} />
             <Route path='/UploadVideo' element={<UploadVideo/>} />
             <Route path='/SignIn' element={<SignIn/>} />

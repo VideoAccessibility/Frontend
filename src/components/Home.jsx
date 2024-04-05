@@ -75,7 +75,7 @@ const Home = () => {
           }}
         >
           <Typography variant="h4" fontWeight="bold" mb={2} color="primary.dark">
-            Recent Descriptions
+            Recently Described Videos
           </Typography>
           {isLoading ? (
             <div>Loading...</div>
