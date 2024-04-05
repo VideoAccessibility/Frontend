@@ -56,9 +56,8 @@ const Home = () => {
       <Stack sx={{ flexDirection: { xs: "column", md: "row" } }}>
         <Box
           sx={{
-            height: { xs: "auto", md: "100vh" },
+            height: { xs: "auto", md: "92vh" },
             paddingRight: { xs: 0, md: 2 },
-            marginBottom: 2,
           }}
         >
           <Sidebar

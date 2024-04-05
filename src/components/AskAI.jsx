@@ -25,6 +25,8 @@ const AskAI = (props) => {
   const [loading, setLoading] = React.useState(false);
   const [response, setResponse] = React.useState("");
   const [startOrStop, setStartOrStop] = React.useState("Stop");
+  const [alerttext, setAlerttext] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   const synth = window.speechSynthesis;
   const voices = synth.getVoices();
@@ -72,12 +74,16 @@ const AskAI = (props) => {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
+  const handleCloseAlertCallback = () => {
+    setShowAlert();
+  };
+
   const handleClickOpen = () => {
     const token = Cookies.get("jwtToken");
     if (!token || !tokenUsable(token)){
-      return(
-        alert("You must be signed in to ask AI questions")
-      )
+      setShowAlert(true)
+      setAlerttext("to ask questions")
+      return
     }
 
     SpeechRecognition.startListening({continuous:true});
@@ -152,6 +158,11 @@ const AskAI = (props) => {
 
   return (
     <React.Fragment>
+    {showAlert && 
+      <AlertBar 
+      alertText={"You need to have an account "+alerttext}
+      parentCallback={handleCloseAlertCallback}
+      />}
       <Button
         sx={{
           backgroundColor: "secondary.main",

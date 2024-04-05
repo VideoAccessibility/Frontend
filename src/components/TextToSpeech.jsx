@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@mui/material";
 
-const TextToSpeech = ({ text, parentCallback }) => {
+const TextToSpeech = ({ text, parentCallback, cIndex, pIndex }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [utterance, setUtterance] = useState(null);
   const [voice, setVoice] = useState(null);
@@ -10,55 +10,59 @@ const TextToSpeech = ({ text, parentCallback }) => {
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    const synth = window.speechSynthesis;
-    const voices = synth.getVoices();
-
-    const newUtterance = new SpeechSynthesisUtterance(text);
-    newUtterance.voice = voices.find((v) => v.name === "Google US English");
-    newUtterance.pitch = pitch;
-    newUtterance.rate = rate;
-    newUtterance.volume = volume;
-
-    if (!isPaused) {
-      synth.speak(newUtterance);
-
-      newUtterance.onend = () => {
-        parentCallback();
+    if (pIndex !== cIndex){
+      const synth = window.speechSynthesis;
+      const voices = synth.getVoices();
+  
+      const newUtterance = new SpeechSynthesisUtterance(text);
+      newUtterance.voice = voices.find((v) => v.name === "Google US English");
+      newUtterance.pitch = pitch;
+      newUtterance.rate = rate;
+      newUtterance.volume = volume;
+      if(isPaused){
+        setIsPaused(false)
       }
+        synth.speak(newUtterance);
+  
+        newUtterance.onend = () => {
+          parentCallback(cIndex);
+  
+        }
+        // setIsPaused(false);
+  
+      setUtterance(newUtterance);
+  
+      return () => {
+        synth.cancel();
+      };
     }
-
-    setUtterance(newUtterance);
-
-    return () => {
-      synth.cancel();
-    };
-  }, [text, voice, pitch, rate, volume, isPaused]);
+  }, [text, voice, pitch, rate, volume]);
 
 
 
   const handlePause = () => {
     const synth = window.speechSynthesis;
-    synth.pause();
     setIsPaused(true);
+    synth.pause();
   };
 
   const handleResume = () => {
     const synth = window.speechSynthesis;
-    synth.resume();
+
+    if (isPaused) {
+      synth.resume();
+    } else {
+      utterance.voice = voice;
+      utterance.pitch = pitch;
+      utterance.rate = rate;
+      utterance.volume = volume;
+      synth.speak(utterance);
+    }
+
     setIsPaused(false);
   };
 
-  const handleStop = () => {
-    const synth = window.speechSynthesis;
-    synth.cancel();
-    setIsPaused(false);
-  };
 
-  // const handleVoiceChange = (event) => {
-  //   const selectedVoice = event.target.value;
-  //   setVoice(selectedVoice);
-  //   console.log("This is the chosen voice.",event.target.value)
-  // };
 
   const handleRateChange = (event) => {
     setRate(parseFloat(event.target.value));
@@ -94,7 +98,7 @@ const TextToSpeech = ({ text, parentCallback }) => {
           onChange={handleRateChange}
         />
       </label>
-      <br />
+      {/* <br />
       <label>
         Volume:
         <input
@@ -105,7 +109,7 @@ const TextToSpeech = ({ text, parentCallback }) => {
           value={volume}
           onChange={handleVolumeChange}
         />
-      </label>
+      </label> */}
 
       <br />
 
@@ -120,7 +124,7 @@ const TextToSpeech = ({ text, parentCallback }) => {
       >
         {isPaused ? "Resume" : "Pause"}
       </Button>
-      <Button
+      {/* <Button
         sx={{
           backgroundColor: "secondary.main",
           color: "white",
@@ -130,7 +134,7 @@ const TextToSpeech = ({ text, parentCallback }) => {
         onClick={handleStop}
       >
         Stop
-      </Button>
+      </Button> */}
     </div>
   );
 };

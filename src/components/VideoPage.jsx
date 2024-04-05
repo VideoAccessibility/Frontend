@@ -60,10 +60,34 @@ const VideoPage = () => {
       setIsLoggedIn(false);
     }
   }, []); // This effect runs only once, on component mount
+  
 
   const params = { id: video_id, jwt: token };
   const url = "https://vidscribe.org/b/descriptions/";
   const parameters = { video_id: video_id };
+
+  useEffect(() => {
+    // Add event listener when component mounts
+    window.addEventListener("keydown", handleKeyDown);
+    
+    // Remove event listener when component unmounts
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+
+  const handleKeyDown = (event) => {
+    // Check if the pressed key is 'o'
+    if (event.key === "o" || event.key === "O") {
+      handleViewDescriptions();
+    }
+  };
+
+  const handleViewDescriptions = () => {
+    setturnOnOff((prev) => (prev === "off" ? "on" : "off"));
+    setDescOn((prev) => !prev);
+  };
 
   useEffect(() => {
     axios
@@ -108,6 +132,8 @@ const VideoPage = () => {
     return <div className="App">Loading...</div>;
   }
 
+  
+
   const handleCallback = (progressData) => {
     setPlayed(progressData);
   };
@@ -138,15 +164,6 @@ const VideoPage = () => {
     }
   }
 
-  const handleViewDescriptions = () => {
-    if (turnOnOff === "off") {
-      setturnOnOff("on");
-      setDescOn(false);
-    } else {
-      setturnOnOff("off");
-      setDescOn(true);
-    }
-  };
 
   return (
     <div>
@@ -157,7 +174,7 @@ const VideoPage = () => {
       />}
       <Navbar />
       <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-        <Box sx={{ height: { sx: "auto", md: "100vh" } }}>
+        <Box sx={{height: { xs: "auto", md: "92vh" }, paddingRight: { xs: 0, md: 2 }, }}>
           <Sidebar
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}

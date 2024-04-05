@@ -15,7 +15,9 @@ const VideoPlayer = (props) => {
   // console.log("these are my descriptions in video-player", props.descrip)
   const [videoDescriptions, setVideoDescriptions] = useState([defaultDescription]);
   const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);
+  const [prevDescriptionIndex, setPrevDescriptionIndex] = useState(0);
   const [isSpeechPlaying, setIsSpeechPlaying] = useState(false);
+  const [playSpeech, setPlaySpeech] = useState(true);
 
   useEffect(() => {
     // Concatenate the default description with the new descriptions from props
@@ -50,7 +52,9 @@ const VideoPlayer = (props) => {
     };
   }, [currentDescriptionIndex, videoDescriptions, props.parentCallback]);
 
-  const handleCallback = () => {
+  const handleCallback = (playedIndex) => {
+    //played index refers to the speech that was most recently played
+    setPrevDescriptionIndex(playedIndex)
     const videoElement = document.getElementById("video");
     videoElement.play();
   };
@@ -58,14 +62,13 @@ const VideoPlayer = (props) => {
   // Ensure videoDescriptions[currentDescriptionIndex] is defined before accessing its properties
   const currentDescription = videoDescriptions[currentDescriptionIndex] || defaultDescription;
 
-
   return (
     <div>
       <video id="video" controls width="100%" height="500px">
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
+      {console.log("My current index and previous index", currentDescriptionIndex, prevDescriptionIndex)}
       <div>
         <Typography variant="h6" color={"primary.dark"} paddingTop={2}>
           {props.title}
@@ -96,6 +99,8 @@ const VideoPlayer = (props) => {
                   text={currentDescription.descriptions}
                   isPlayed={isSpeechPlaying}
                   parentCallback={handleCallback}
+                  cIndex = {currentDescriptionIndex}
+                  pIndex = {prevDescriptionIndex}
                 />
               )}
             </Typography>

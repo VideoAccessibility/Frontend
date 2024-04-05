@@ -36,12 +36,7 @@ const EditDescriptions = () => {
     <div>
       <Navbar />
       <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
-        <Box
-          sx={{
-            height: { sx: "auto", md: "100vh" },
-            paddingRight: { sx: 0, md: 2 },
-          }}
-        >
+      <Box sx={{height: { xs: "auto", md: "92vh" }, paddingRight: { xs: 0, md: 2 }, }}>
           <Sidebar
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
