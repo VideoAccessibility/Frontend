@@ -119,7 +119,7 @@ const Scene = ({id}) => {
               sx={{
                 margin: "20px 0",
                 width: "300px",
-                backgroundColor: "primary.main",
+                backgroundColor: "primary.light",
               }}
             >
               <InputLabel>User</InputLabel>
@@ -145,13 +145,13 @@ const Scene = ({id}) => {
               <Card
                 key={description.id}
                 variant="outlined"
-                sx={{ marginBottom: "10px", backgroundColor: "primary.main" }}
+                sx={{ marginBottom: "10px", backgroundColor: "primary.light" }}
               >
                 <CardContent>
                   <Chip
                     label={formatTime(parseInt(description.time_stamp_start))+ " - " + formatTime(parseInt(description.time_stamp_end))}
                     sx={{
-                      backgroundColor: "secondary.light",
+                      backgroundColor: "primary.main",
                       color: "white",
                       marginBottom: "20px",
                     }}
@@ -173,6 +173,7 @@ const Scene = ({id}) => {
                       p={1.5}
                       borderRadius="5px"
                       sx={{ backgroundColor: "white" }}
+                      boxShadow={3}
                     >
                       <Typography variant="body1">
                         {description.descriptions}{" "}

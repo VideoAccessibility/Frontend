@@ -1,0 +1,9 @@
+export { default as SignIn} from './SignIn';
+export { default as SignUp} from './SignUp';
+export { default as Home} from './Home';
+export { default as UploadVideo} from './UploadVideo';
+export { default as UploadURL} from './UploadURL';
+export { default as VideoPage} from './VideoPage';
+export { default as AddDescriptions} from './AddDescriptions';
+export { default as EditDescriptions} from './EditDescriptions';
+export { default as AboutPage} from './AboutPage';

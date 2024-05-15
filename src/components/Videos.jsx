@@ -25,6 +25,7 @@ function transformPath(path) {
     }
     // Replace the file extension with ".png"
     return "https://vidscribe.org/b/" + path.replace(/\.mp4$/, '.png');
+    // return "http://127.0.0.1:8000/" + path.replace(/\.mp4$/, '.png');
   } else {
     // Handle the case where path is null or undefined
     return "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg";
@@ -42,11 +43,10 @@ const Videos = (props) => {
       flexWrap="wrap"
       justifyContent="start"
       alignItems="start"
-      gap={2}
+      columnGap={2}
+      m={2}
     >
       {reversedVideos.map((item, idx) => (
-        <Box key={idx}>
-          {
             <VideoCard
               id={item.id}
               path={ensureVideoUrlFormat(item.video_path)}
@@ -54,8 +54,6 @@ const Videos = (props) => {
               title={item.title}
               image={transformPath(item.video_path)}
             />
-          }
-        </Box>
       ))}
     </Stack>
   );

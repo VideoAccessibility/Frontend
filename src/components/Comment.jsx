@@ -44,8 +44,8 @@ const Comment = (props) => {
   console.log(isLoading, noComments)
   if (isLoading || noComments) {
     return (
-      <Typography variant="subtitle2" sx={{ color: "#468B97" }}>
-        No comments to display
+      <Typography variant="subtitle2">
+        No questions asked for this video
       </Typography>
     );
   }

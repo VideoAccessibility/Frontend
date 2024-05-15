@@ -10,35 +10,32 @@ const TextToSpeech = ({ text, parentCallback, cIndex, pIndex }) => {
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    if (pIndex !== cIndex){
+    if (pIndex !== cIndex) {
       const synth = window.speechSynthesis;
       const voices = synth.getVoices();
-  
+
       const newUtterance = new SpeechSynthesisUtterance(text);
       newUtterance.voice = voices.find((v) => v.name === "Google US English");
       newUtterance.pitch = pitch;
       newUtterance.rate = rate;
       newUtterance.volume = volume;
-      if(isPaused){
-        setIsPaused(false)
+      if (isPaused) {
+        setIsPaused(false);
       }
-        synth.speak(newUtterance);
-  
-        newUtterance.onend = () => {
-          parentCallback(cIndex);
-  
-        }
-        // setIsPaused(false);
-  
+      synth.speak(newUtterance);
+
+      newUtterance.onend = () => {
+        parentCallback(cIndex);
+      };
+      // setIsPaused(false);
+
       setUtterance(newUtterance);
-  
+
       return () => {
         synth.cancel();
       };
     }
   }, [text, voice, pitch, rate, volume]);
-
-
 
   const handlePause = () => {
     const synth = window.speechSynthesis;
@@ -61,8 +58,6 @@ const TextToSpeech = ({ text, parentCallback, cIndex, pIndex }) => {
 
     setIsPaused(false);
   };
-
-
 
   const handleRateChange = (event) => {
     setRate(parseFloat(event.target.value));
@@ -117,12 +112,13 @@ const TextToSpeech = ({ text, parentCallback, cIndex, pIndex }) => {
         sx={{
           backgroundColor: "secondary.main",
           color: "white",
-          margin: "10px",
+          marginTop: "10px",
         }}
         className="category-btn"
+        aria-label="Play or pause the descriptions"
         onClick={isPaused ? handleResume : handlePause}
       >
-        {isPaused ? "Resume" : "Pause"}
+        {isPaused ? "Resume description" : "Pause description"}
       </Button>
       {/* <Button
         sx={{

@@ -17,7 +17,7 @@ const AlertBar = ({alertText, parentCallback}) => {
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
     >
       <Alert severity="error" onClose={handleAlertClose}>
-        <AlertTitle>Authentication Error</AlertTitle>
+        <AlertTitle>Error</AlertTitle>
         {alertText}
       </Alert>
     </Snackbar>

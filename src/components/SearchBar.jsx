@@ -21,8 +21,8 @@ const SearchBar = () => {
       component='form'
       onSubmit={handleSubmit}
       sx={{
-        borderRadius: '10px',
-        border: '1px solid #33363F',
+        // borderRadius: '10px',
+        border: '1px solid black',
         pl: 2,
         boxShadow: 'none',
         mr: { sm: 5 },
@@ -40,7 +40,7 @@ const SearchBar = () => {
       sx={{ 
         p: '10px', 
         color: '#33363F' }} 
-        aria-label='search'>
+        aria-label='search icon'>
         <SearchIcon />
       </IconButton>
     </Paper>

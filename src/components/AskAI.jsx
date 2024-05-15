@@ -164,13 +164,15 @@ const AskAI = (props) => {
       parentCallback={handleCloseAlertCallback}
       />}
       <Button
-        sx={{
-          backgroundColor: "secondary.main",
-          color: "white",
-          width: "100%",
-          marginTop: "10px",
-        }}
+        variant="contained"
+        component="label"
         className="category-btn"
+        sx={{
+          mb: 1,
+          p: "10px 20px",
+          borderRadius: "30px",
+          width: "100%",
+        }}
         onClick={handleClickOpen}
       >
         Ask question at {formatTime(props.timeStamp)}
@@ -185,8 +187,8 @@ const AskAI = (props) => {
           <KeyboardVoiceIcon
             sx={{
               fontSize: "70px",
-              backgroundColor: "#1D5B79",
-              color: listening ? "#EF6262" : "white",
+              backgroundColor: "primary.main",
+              color: listening ? "secondary.main" : "white",
               ml: "5px",
               borderRadius: "100%",
               padding: "20px",
@@ -230,8 +232,8 @@ const AskAI = (props) => {
           <KeyboardVoiceIcon
             sx={{
               fontSize: "70px",
-              backgroundColor: "#1D5B79",
-              color: listening ? "#EF6262" : "white",
+              backgroundColor: "primary.main",
+              color: listening ? "secondary.main" : "white",
               ml: "5px",
               borderRadius: "100%",
               padding: "20px",

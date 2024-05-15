@@ -23,19 +23,16 @@ const Player = (props) => {
     }, [played]);
 
     return(
-    <div>
     <ReactPlayer 
     ref={playerRef}
     url={video}
     playing={isPlaying}
     controls={true} 
     width={"100%"}
-    height={"500px"}
     onProgress={(progress) => {
        setPlayed(Math.floor(progress.playedSeconds));
      }}
     />
-    </div>
     )
 }
 

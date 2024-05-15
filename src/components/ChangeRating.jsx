@@ -8,6 +8,7 @@ import {
   Grid,
   Button,
   Typography,
+  Divider,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
@@ -48,7 +49,7 @@ const ChangeRating = ({ descriptions, parentCallback }) => {
   return (
     <Paper
       variant="outlined"
-      sx={{ backgroundColor: "primary.main", padding: "20px", width: "60%" }}
+      sx={{ backgroundColor: "white", padding: "20px", marginTop: "20px" }}
     >
       <Grid
         container
@@ -88,7 +89,7 @@ const ChangeRating = ({ descriptions, parentCallback }) => {
       </Grid>
       {isChangeDescriptionClicked && (
         <div>
-          <hr />
+          <Divider />
           <Grid container spacing={2} style={{ marginTop: "20px" }}>
             <Grid item xs={12}>
               <FormControl fullWidth>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Stack, Typography, Grid, TextField, Button } from "@mui/material";
-import { Sidebar, Player, Scene, Navbar, Notes , Frame} from ".";
+import { Sidebar, Player, Scene, Navbar, Notes , Frame} from "..";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";

@@ -1,39 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Box, Grid, Typography, Paper } from "@mui/material";
+import Divider from '@mui/material/Divider';
+
 import { TextToSpeech } from "./";
 
 
-const DisplayDescriptions = (props) => {
+const DisplayDescriptions = ({description, parentCallback, cIndex, pIndex}) => {
   const [desc, setDesc] = useState("");
-
   function handlePause(){
     console.log("yolo")
   }
+
+  function handleCallback(playedIndex){
+   parentCallback(playedIndex);
+  }
   return (
     <div>
-      <Box
-        p={2}
-        sx={{
-          backgroundColor: "#1D5B79",
-          borderRadius: "5px",
-          marginBottom: "32px",
-        }}
-      >
-        <Box p={1.5} borderRadius="5px" sx={{ backgroundColor: "white" }}>
-          {props.descriptions.map((item) => {
-            if (item.time_stamp === props.timeStamp)
-            {
-              return (
-                <Typography variant="body1" sx={{ color: "#1D5B79" }}>
-                  {item.descriptions}
-                  {handlePause}
-                  <hr />
-                  <TextToSpeech text={item.descriptions} />
+        <Box p={2} borderRadius="5px" sx={{ backgroundColor: "white" }} boxShadow={3}>
+                <Typography variant="body1" marginBottom={2}>
+                  {description.descriptions}
                 </Typography>
-              );
-          }})}
+                <Divider aria-hidden="true"/>
+                  <TextToSpeech text={description.descriptions}
+                  isPlayed={true}
+                  parentCallback={handleCallback}
+                  cIndex = {cIndex}
+                  pIndex = {pIndex} />
         </Box>
-      </Box>
     </div>
   );
 };
