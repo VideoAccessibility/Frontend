@@ -13,7 +13,7 @@ const AboutPage = () => {
         m={2}
         // sx={{ flexGrow: 1, p: 2, paddingTop:10, width: { sm: `calc(100% - ${drawerWidth}px)` }}}
       >
-        <StyledHeading text="About Vidscribe" />
+        <StyledHeading text="About VidScribe" />
         <Typography width={"70%"}>{aboutWebsite[0]}</Typography>
         <br />
         <Typography width={"70%"}>{aboutWebsite[1]}</Typography>
@@ -23,7 +23,7 @@ const AboutPage = () => {
         <img src="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" alt="National Institute of Health Logo" width={"30%"}/>
         </Box>
 
-        <StyledHeading text="The team behind Vidscribe" />
+        <StyledHeading text="The team behind VidScribe" />
         <Stack
           direction={"row"}
           flexWrap="wrap"

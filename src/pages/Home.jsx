@@ -60,7 +60,7 @@ export default function Feed() {
     <SideNav/>
       <Box
         component="main"
-        // sx={{ flexGrow: 1, p: 2, paddingTop:10, width: { sm: `calc(100% - ${drawerWidth}px)` }}}
+        sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, height:"100vh"}}
       >
       <Navbar/>
       <Box m={2} sx={{ backgroundColor: 'secondary.main', p: '0 10px', display: 'inline-block' }}>
