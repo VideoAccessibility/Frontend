@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Stack, Typography, Grid, TextField, Button } from "@mui/material";
-import { Sidebar, Player, Scene, Navbar, Notes, Frame, SideNav } from "../components/";
+import { Sidebar, Player, Scene, Navbar, Notes, Frame, SideNav, YoutubeVideoPlayer} from "../components/";
 import { useLocation, Link } from "react-router-dom";
 
 const drawerWidth = 200;
@@ -20,6 +20,14 @@ function ensureVideoUrlFormat(url) {
   return url;
 }
 
+function ensureVideoId(url){
+  if (url !== "") {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|.*[&?]))([^&?\s]+)/);
+    if (match && match[1]) {
+        return match[1];
+    }
+}
+}
 
 const EditDescriptions = () => {
   const [selectedCategory, setSelectedCategory] = useState();
@@ -28,7 +36,8 @@ const EditDescriptions = () => {
   const [videoDescriptions, setVideoDescriptions] = useState([]);
 
   const location = useLocation();
-  const { video_id, video_path } = location.state;
+  const { video_id, video_path, youtubeID } = location.state;
+  console.log("These are my video ids and paths",video_id, video_path, youtubeID)
   // this function just retrives the time the video is played
   const handleCallback = (progressData) => {
     setPlayed(progressData);
@@ -49,10 +58,15 @@ const EditDescriptions = () => {
           <Navbar />
           <Grid container>
           <Grid item xs={12} md={8}>
-            <Player path={ensureVideoUrlFormat(video_path)} parentCallback={handleCallback} />
+            {/* <Player path={ensureVideoUrlFormat(video_path)} parentCallback={handleCallback} /> */}
+            <YoutubeVideoPlayer
+                yesDesc={false}
+                path={ensureVideoUrlFormat(video_path)}
+                parentCallback={handleCallback}
+                descrip={null}
+                videoID={ensureVideoId(youtubeID)}
+              />
           </Grid>
-          {/* CHANGE THIS FROM HARD CODING
-          <Notes videoId={video_id} /> */}
 
           <Grid item xs={12} md={8}>
             <Scene id={video_id}/>

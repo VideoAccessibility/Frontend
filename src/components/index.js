@@ -11,7 +11,7 @@ export { default as Scene} from './Scene';
 export { default as UploadVideo} from './old_pages/UploadVideo';
 export { default as AskAI} from './AskAI';
 export { default as SignIn} from './old_pages/SignIn';
-export { default as UploadUrl} from './UploadUrl';
+export { default as UploadUrl} from './old_pages/UploadUrl';
 export { default as Notes} from './Notes';
 export { default as Frame} from './Frame';
 export { default as TextToSpeech} from './TextToSpeech';
@@ -20,7 +20,7 @@ export { default as VideoPlayer} from "./VideoPlayer"
 export { default as ChangeRating} from "./ChangeRating"
 export { default as EditDescriptions} from './EditDescriptions';
 export { default as AddDescriptions} from './old_pages/AddDescriptions';
-export { default as SRPage} from './SRPage';
+export { default as SRPage} from './old_pages/SRPage';
 export { default as AlertBar} from './AlertBar';
 // export { default as SignUp} from './old_pages/SignUp';
 export { default as RedirectHome} from './RedirectHome';

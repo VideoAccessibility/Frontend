@@ -45,7 +45,7 @@ const Comment = (props) => {
   if (isLoading || noComments) {
     return (
       <Typography variant="subtitle2">
-        No questions asked for this video
+        Be the first to ask a question on this video
       </Typography>
     );
   }
@@ -57,7 +57,7 @@ const Comment = (props) => {
       {reversedComments.map((comment, index) => (
         <Grid container p={2} key={index}>
           <Grid item xs={8} md={9}>
-            <Typography variant="subtitle2" sx={{ color: "#468B97" }}>
+            <Typography variant="subtitle2" sx={{ color: "primary.main" }}>
               @{comment.username}
             </Typography>
           </Grid>
@@ -65,7 +65,7 @@ const Comment = (props) => {
             <Chip
               label={formatTime(parseInt(comment.time_stamp))}
               sx={{
-                backgroundColor: "secondary.light",
+                backgroundColor: "primary.main",
                 color: "white",
                 marginBottom: "20px",
               }}

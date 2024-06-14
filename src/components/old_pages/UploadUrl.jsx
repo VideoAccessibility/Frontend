@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sidebar, Navbar } from "./";
+import { Sidebar, Navbar } from "..";
 import {
   Box,
   Stack,

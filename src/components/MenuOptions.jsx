@@ -5,7 +5,7 @@ import { AskAI, AlertBar } from "./index";
 import Cookies from "js-cookie";
 import StyledHeading from "./styled_elements/StyledHeading";
 
-const MenuOptions = ({ video_id, video_path, parentCallback, time }) => {
+const MenuOptions = ({ video_id, video_path, parentCallback, time, youtubeID}) => {
   const [alerttext, setAlerttext] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -29,7 +29,7 @@ const MenuOptions = ({ video_id, video_path, parentCallback, time }) => {
       setAlerttext("You need to have an account to add descriptions");
     } else {
       navigate("/AddDescriptions", {
-        state: { video_id: video_id, video_path: video_path },
+        state: { video_id: video_id, video_path: video_path, youtubeID: youtubeID },
       });
     }
   };
@@ -40,7 +40,7 @@ const MenuOptions = ({ video_id, video_path, parentCallback, time }) => {
       setAlerttext("You need to have an account to edit descriptions");
     } else {
       navigate("/EditDescriptions", {
-        state: { video_id: video_id, video_path: video_path },
+        state: { video_id: video_id, video_path: video_path, youtubeID: youtubeID },
       });
     }
   };

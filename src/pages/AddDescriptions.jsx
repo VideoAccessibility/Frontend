@@ -27,9 +27,33 @@ import formatTime from "../utils/functions";
 import { useLocation } from "react-router-dom";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { SideNav, Navbar, Player, StyledHeading } from "../components/";
+import { SideNav, Navbar, StyledHeading, YoutubeVideoPlayer } from "../components/";
 
 const drawerWidth = 200;
+
+function ensureVideoUrlFormat(url) {
+  // Check if url is null or undefined
+  if (url == null) {
+    console.error("Error: URL is null or undefined");
+    return null; // Return null in case of error
+  }
+
+  // Check if the URL already starts with "videos/"
+  if (!url.startsWith("videos/")) {
+    // If not, prepend "videos/" to the URL
+    url = "videos/" + url;
+  }
+  return url;
+}
+
+function ensureVideoId(url){
+  if (url !== "") {
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|.*[&?]))([^&?\s]+)/);
+    if (match && match[1]) {
+        return match[1];
+    }
+}
+}
 
 const AddDescriptions = () => {
   const [selectedCategory, setSelectedCategory] = useState();
@@ -44,7 +68,7 @@ const AddDescriptions = () => {
   const playerRef = useRef(null);
   const framesContainerRef = useRef(null);
   const location = useLocation();
-  const { video_id, video_path } = location.state;
+  const { video_id, video_path, youtubeID } = location.state;
 
   // Load frames from localStorage on component mount
   useEffect(() => {
@@ -62,9 +86,10 @@ const AddDescriptions = () => {
   const handleCallback = (progressData) => {
     setPlayed(progressData);
 
-    // Update startTime dynamically
-    setStartTime(dayjs(progressData * 1000));
-    setEndTime(dayjs(progressData * 1000));
+    console.log(progressData)
+    // // Update startTime dynamically
+    // setStartTime(dayjs(progressData * 1000));
+    // setEndTime(dayjs(progressData * 1000));
   };
 
   const handleAddFrame = () => {
@@ -185,11 +210,12 @@ const AddDescriptions = () => {
           <Navbar />
           <Grid container>
             <Grid item xs={12} md={6} m={2}>
-              <Player
-                path={video_path}
+            <YoutubeVideoPlayer
+                yesDesc={false}
+                path={ensureVideoUrlFormat(video_path)}
                 parentCallback={handleCallback}
-                seekToTimestamp={handleReplayFrame}
-                playerRef={playerRef}
+                descrip={null}
+                videoID={ensureVideoId(youtubeID)}
               />
               <Box
                 p={2}

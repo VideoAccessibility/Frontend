@@ -127,33 +127,3 @@ const YoutubeVideoPlayer = (props) => {
 };
 
 export default YoutubeVideoPlayer;
-
-//   useEffect(() => {
-//     const videoElement = playerRef.current;
-//     if (videoElement) {
-//       const handleTimeUpdate = () => {
-//         console.log("yolo")
-//         if (videoDescriptions.length > 0) {
-//             console.log("Coming here??? the second one", videoElement.getCurrentTime())
-//           const currentTime = Math.floor(videoElement.getCurrentTime());
-//           props.parentCallback(currentTime);
-//           const index = videoDescriptions.findIndex(
-//             (description) => parseInt(description.time_stamp_start) === currentTime
-//           );
-
-//           if (index !== -1 && index !== currentDescriptionIndex && props.yesDesc) {
-//             console.log("Coming here??? the third one")
-//             setCurrentDescriptionIndex(index);
-//             videoElement.pauseVideo();
-//           }
-//         }
-//       };
-
-//       videoElement.addEventListener("timeupdate", handleTimeUpdate);
-//       console.log("Coming here???", videoDescriptions.length, videoElement.getCurrentTime)
-
-//       return () => {
-//         videoElement.removeEventListener("timeupdate", handleTimeUpdate);
-//       };
-//     }
-//   }, [currentDescriptionIndex, videoDescriptions, props.parentCallback, props.yesDesc]);

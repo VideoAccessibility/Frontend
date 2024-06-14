@@ -104,6 +104,9 @@ const VideoPage = () => {
       .get(url, { params: parameters })
       .then((response) => {
         console.log("Received description data", response.data.descriptions);
+        if (response.data.descriptions === "VIDEO_NOT_FOUND"){
+          console.log("Video is not found")
+        }
         const descriptions = response.data.descriptions.map((item) => {
           return JSON.parse(item);
         });
