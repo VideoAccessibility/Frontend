@@ -79,7 +79,7 @@ const UploadVideo = () => {
         console.log("Response:", response.data);
         setUploadDialogOpen(false);
         setLoading(false);
-        // navigate("/"); // Removed this line, as dialog confirmation might lead to a different navigation flow
+        navigate("/"); // Removed this line, as dialog confirmation might lead to a different navigation flow
       })
       .catch((error) => {
         console.error("Error:", error);
