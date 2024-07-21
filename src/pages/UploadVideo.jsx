@@ -69,9 +69,10 @@ const UploadVideo = () => {
     setHeading("Your file is being loaded, do not refresh page.");
     setSmallHeading("You will be redirected to the video page when the video is described");
     setLoading(true);
-
+    const url = "https://vidscribe.org/b/api/upload/";
+    // const url = "http://127.0.0.1:8000/api/upload/";
     axios
-      .post("https://vidscribe.org/b/api/upload/", formData, {
+      .post(url, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {

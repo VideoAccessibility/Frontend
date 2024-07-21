@@ -27,7 +27,7 @@ import formatTime from "../utils/functions";
 import { useLocation } from "react-router-dom";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { SideNav, Navbar, StyledHeading, YoutubeVideoPlayer } from "../components/";
+import { SideNav, Navbar, StyledHeading, YoutubeVideoPlayer, VideoPlayer } from "../components/";
 
 const drawerWidth = 200;
 
@@ -86,7 +86,7 @@ const AddDescriptions = () => {
   const handleCallback = (progressData) => {
     setPlayed(progressData);
 
-    console.log(progressData)
+    // console.log(progressData)
     // // Update startTime dynamically
     // setStartTime(dayjs(progressData * 1000));
     // setEndTime(dayjs(progressData * 1000));
@@ -210,13 +210,22 @@ const AddDescriptions = () => {
           <Navbar />
           <Grid container>
             <Grid item xs={12} md={6} m={2}>
-            <YoutubeVideoPlayer
-                yesDesc={false}
-                path={ensureVideoUrlFormat(video_path)}
-                parentCallback={handleCallback}
-                descrip={null}
-                videoID={ensureVideoId(youtubeID)}
-              />
+            {youtubeID ? (
+                <YoutubeVideoPlayer
+                  yesDesc={false}
+                  path={ensureVideoUrlFormat(video_path)}
+                  parentCallback={handleCallback}
+                  descrip={null}
+                  videoID={ensureVideoId(youtubeID)}
+                />
+              ) : (
+                <VideoPlayer
+                  yesDesc={false}
+                  path={ensureVideoUrlFormat(video_path)}
+                  descrip={null}
+                  parentCallback={handleCallback}
+                />
+              )}
               <Box
                 p={2}
                 boxShadow={3}

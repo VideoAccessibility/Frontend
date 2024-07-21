@@ -9,3 +9,4 @@ export { default as EditDescriptions} from './EditDescriptions';
 export { default as AboutPage} from './AboutPage';
 export { default as Search} from './Search';
 export { default as ErrorPage} from './ErrorPage';
+export { default as SettingsPage} from './SettingsPage';

@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Typography, Box, Chip } from "@mui/material";
+import { Typography, Box, Chip, Grid } from "@mui/material";
+import {
+  DisplayDescriptions,
+  StyledHeading,
+} from "../components/";
 import { TextToSpeech } from ".";
 import formatTime from "../utils/functions";
 
 const VideoPlayer = (props) => {
+  // console.log("Coming in props", props)
   const video = "https://vidscribe.org/b/" + props.path;
+
   const defaultDescription = {
     descriptions: "No description playing",
     time_stamp_start: "-",
@@ -70,45 +76,16 @@ const VideoPlayer = (props) => {
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-      {console.log("My current index and previous index", currentDescriptionIndex, prevDescriptionIndex)}
-      <div>
-        <Typography variant="h6" color={"primary.dark"} paddingTop={2}>
-          {props.title}
-        </Typography>
-        <hr />
-        {props.yesDesc && <Box
-          p={2}
-          sx={{
-            backgroundColor: "#1D5B79",
-            borderRadius: "5px",
-            marginBottom: "32px",
-          }}
-        >
-          <Box p={1.5} borderRadius="5px" sx={{ backgroundColor: "white" }}>
-            <Chip
-              label={formatTime(parseInt(currentDescription.time_stamp_start)) + " - " + formatTime(parseInt(currentDescription.time_stamp_end))}
-              sx={{
-                backgroundColor: "secondary.light",
-                color: "white",
-                marginBottom: "20px",
-              }}
-            />
-            <Typography variant="body1" sx={{ color: "#1D5B79" }}>
-              {currentDescription.descriptions}
-              <hr />
-              {currentDescriptionIndex !== 0 && (
-                <TextToSpeech
-                  text={currentDescription.descriptions}
-                  isPlayed={isSpeechPlaying}
-                  parentCallback={handleCallback}
-                  cIndex={currentDescriptionIndex}
-                  pIndex={prevDescriptionIndex}
-                />
-              )}
-            </Typography>
-          </Box>
-        </Box>}
-      </div>
+      {/* {console.log("My current index and previous index", currentDescriptionIndex, prevDescriptionIndex)} */}
+      {props.yesDesc && <Grid mt={2}>
+        <StyledHeading text={props.title} />
+        <DisplayDescriptions
+          description={currentDescription}
+          parentCallback={handleCallback}
+          cIndex = {currentDescriptionIndex}
+          pIndex = {prevDescriptionIndex}
+        />
+      </Grid>}
     </div>
   );
 };

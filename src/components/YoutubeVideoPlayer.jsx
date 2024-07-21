@@ -7,6 +7,7 @@ import {
 import YouTube from "react-youtube";
 
 const YoutubeVideoPlayer = (props) => {
+  // console.log("Props in  youtube",props)
   const [player, setPlayer] = useState(null);
   const [videoDescriptions, setVideoDescriptions] = useState([]);
   const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);

@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Box, Stack, Typography, Grid, Button, Divider } from "@mui/material";
+import { Box, Grid, Typography, Divider } from "@mui/material";
 import {
   Comment,
   Navbar,
   YoutubeVideoPlayer,
   ChangeRating,
   MenuOptions,
+  VideoPlayer,
 } from "../components/";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { SideNav } from "../components";
-import { useParams } from "react-router-dom";
 
 function ensureVideoUrlFormat(url) {
   if (url == null) {
@@ -26,7 +26,9 @@ function ensureVideoUrlFormat(url) {
 
 function ensureVideoId(url) {
   if (url) {
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|.*[&?]))([^&?\s]+)/);
+    const match = url.match(
+      /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|.*[&?]))([^&?\s]+)/
+    );
     if (match && match[1]) {
       return match[1];
     }
@@ -50,8 +52,8 @@ const VideoPage = () => {
   const [descUser, setDescUser] = useState();
   const [video, setVideo] = useState({});
   const [descOn, setDescOn] = useState(true);
+  const [descriptionsLoaded, setDescriptionsLoaded] = useState(false);
   const navigate = useNavigate();
-
   const [noDescription, setNoDescription] = useState(false);
 
   useEffect(() => {
@@ -76,6 +78,7 @@ const VideoPage = () => {
   };
 
   const handleCallback = (progressData, audioDescription, playVid) => {
+    console.log("getting data in this video page", progressData, playVid);
     setPlayed(progressData);
     setIsplaying(playVid);
   };
@@ -111,10 +114,17 @@ const VideoPage = () => {
       .then((response) => {
         if (response.data.descriptions === "VIDEO_NOT_FOUND") {
           console.log("Video descriptions not found");
-          navigate('/error', { state: { message: "Sorry, the video you are looking for was not found, return back to homepage." } });
+          navigate("/error", {
+            state: {
+              message:
+                "Sorry, the video you are looking for was not found, return back to homepage.",
+            },
+          });
           return;
         }
-        const descriptions = response.data.descriptions.map((item) => JSON.parse(item));
+        const descriptions = response.data.descriptions.map((item) =>
+          JSON.parse(item)
+        );
         setDesc(descriptions);
         if (descriptions.length > 0) {
           setNoDescription(true);
@@ -127,6 +137,7 @@ const VideoPage = () => {
             (description) => description.username === uniqueUsernames[0]
           )
         );
+        setDescriptionsLoaded(true); // Set descriptions as loaded
         setLoading(false);
       })
       .catch((err) => {
@@ -147,50 +158,72 @@ const VideoPage = () => {
         }}
       >
         <Navbar />
-        <Grid container>
-          <Grid item xs={12} md={7} m={2}>
-            {!isLoading && (
-              <>
-                <YoutubeVideoPlayer
-                  yesDesc={descOn}
-                  path={ensureVideoUrlFormat(video.video_path)}
-                  playVid={isPlaying}
-                  title={video.title}
-                  descrip={descUser}
-                  parentCallback={handleCallback}
-                  videoID={ensureVideoId(video.url)}
+        {!isLoading && (
+          <Grid container>
+            <Grid item xs={12} md={7} m={2}>
+              {descriptionsLoaded && (
+                <>
+                  {video.url ? (
+                    <YoutubeVideoPlayer
+                      yesDesc={descOn}
+                      path={ensureVideoUrlFormat(video.video_path)}
+                      playVid={isPlaying}
+                      title={video.title}
+                      descrip={descUser}
+                      parentCallback={handleCallback}
+                      videoID={ensureVideoId(video.url)}
+                    />
+                  ) : (
+                    <VideoPlayer
+                      yesDesc={descOn}
+                      path={ensureVideoUrlFormat(video.video_path)}
+                      playVid={isPlaying}
+                      title={video.title}
+                      descrip={descUser}
+                      parentCallback={handleCallback}
+                    />
+                  )}
+                </>
+              )}
+              {noDescription && descOn && (
+                <ChangeRating
+                  descriptions={desc}
+                  parentCallback={handleChangeUserCallback}
                 />
-              </>
-            )}
-
-            {noDescription && descOn && (
-              <ChangeRating
-                descriptions={desc}
-                parentCallback={handleChangeUserCallback}
+              )}
+            </Grid>
+            <Grid item xs={12} md={4} m={2}>
+              <MenuOptions
+                video_id={video_id}
+                video_path={video.video_path}
+                parentCallback={handleViewDescriptions}
+                time={played}
+                youtubeID={video.url}
               />
-            )}
-          </Grid>
-          <Grid item xs={12} md={4} m={2}>
-            <MenuOptions video_id={video_id} video_path={video.video_path} parentCallback={handleViewDescriptions} time={played} youtubeID={video.url} />
-            <Box
-              mt={2}
-              p={2}
-              sx={{
-                backgroundColor: "white",
-                paddingBottom: "20px",
-              }}
-              boxShadow={3}
-            >
-              <Typography variant="h6" sx={{ color: "primary.dark" }} marginBottom={1}>
-                Q&A
-              </Typography>
-              <Divider />
-              <Box sx={{ overflow: "scroll", height: "350px" }} mt={1}>
-                <Comment videoID={video_id} />
+              <Box
+                mt={2}
+                p={2}
+                sx={{
+                  backgroundColor: "white",
+                  paddingBottom: "20px",
+                }}
+                boxShadow={3}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{ color: "primary.dark" }}
+                  marginBottom={1}
+                >
+                  Q&A
+                </Typography>
+                <Divider />
+                <Box sx={{ overflow: "scroll", height: "350px" }} mt={1}>
+                  <Comment videoID={video_id} />
+                </Box>
               </Box>
-            </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        )}
       </Box>
     </Box>
   );

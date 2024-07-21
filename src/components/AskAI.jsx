@@ -194,7 +194,7 @@ const AskAI = (props) => {
           <DialogActions>
             <Button
               sx={{
-                backgroundColor: "secondary.main",
+                backgroundColor: "primary.main",
                 color: "white",
               }}
               className="category-btn"
@@ -204,7 +204,7 @@ const AskAI = (props) => {
             </Button>
             <Button
               sx={{
-                backgroundColor: "secondary.main",
+                backgroundColor: "primary.main",
                 color: "white",
               }}
               className="category-btn"
@@ -244,7 +244,7 @@ const AskAI = (props) => {
             <ButtonGroup aria-label="Buttons to control speech recognition">
               <Button
                 sx={{
-                  backgroundColor: "secondary.main",
+                  backgroundColor: "primary.main",
                   color: "white",
                 }}
                 aria-label="This is a button for start or stopping the speech to text"
@@ -255,7 +255,7 @@ const AskAI = (props) => {
               </Button>
               <Button
                 sx={{
-                  backgroundColor: "secondary.main",
+                  backgroundColor: "primary.main",
                   color: "white",
                 }}
                 className="category-btn"
@@ -265,7 +265,7 @@ const AskAI = (props) => {
               </Button>
               <Button
                 sx={{
-                  backgroundColor: "secondary.main",
+                  backgroundColor: "primary.main",
                   color: "white",
                 }}
                 className="category-btn"
@@ -278,7 +278,7 @@ const AskAI = (props) => {
           <DialogActions>
             <Button
               sx={{
-                backgroundColor: "secondary.main",
+                backgroundColor: "primary.main",
                 color: "white",
               }}
               className="category-btn"
@@ -288,9 +288,10 @@ const AskAI = (props) => {
             </Button>
             <Button
               sx={{
-                backgroundColor: "secondary.main",
+                backgroundColor: "primary.main",
                 color: "white",
               }}
+              
               onClick={handleQuestion}
             >
               Submit Question

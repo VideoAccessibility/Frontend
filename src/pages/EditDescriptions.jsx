@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Stack, Typography, Grid, TextField, Button } from "@mui/material";
-import { Sidebar, Player, Scene, Navbar, Notes, Frame, SideNav, YoutubeVideoPlayer} from "../components/";
+import { Sidebar,VideoPlayer, Scene, Navbar, Notes, Frame, SideNav, YoutubeVideoPlayer} from "../components/";
 import { useLocation, Link } from "react-router-dom";
 
 const drawerWidth = 200;
@@ -59,13 +59,22 @@ const EditDescriptions = () => {
           <Grid container>
           <Grid item xs={12} md={8}>
             {/* <Player path={ensureVideoUrlFormat(video_path)} parentCallback={handleCallback} /> */}
-            <YoutubeVideoPlayer
-                yesDesc={false}
-                path={ensureVideoUrlFormat(video_path)}
-                parentCallback={handleCallback}
-                descrip={null}
-                videoID={ensureVideoId(youtubeID)}
-              />
+            {youtubeID ? (
+                <YoutubeVideoPlayer
+                  yesDesc={false}
+                  path={ensureVideoUrlFormat(video_path)}
+                  parentCallback={handleCallback}
+                  descrip={null}
+                  videoID={ensureVideoId(youtubeID)}
+                />
+              ) : (
+                <VideoPlayer
+                  yesDesc={false}
+                  path={ensureVideoUrlFormat(video_path)}
+                  descrip={null}
+                  parentCallback={handleCallback}
+                />
+              )}
           </Grid>
 
           <Grid item xs={12} md={8}>

@@ -4,7 +4,7 @@ import {Box, createTheme, ThemeProvider} from '@mui/material';
 
 
 import { EditDescriptionPage, SRPage} from './components';
-import { SignIn, SignUp, Home, UploadVideo, UploadURL, VideoPage, AddDescriptions, EditDescriptions, AboutPage, Search, ErrorPage} from './pages';
+import { SignIn, SignUp, Home, UploadVideo, UploadURL, VideoPage, AddDescriptions, EditDescriptions, AboutPage, Search, ErrorPage, SettingsPage} from './pages';
 
 const theme = createTheme({
     palette: {
@@ -44,6 +44,7 @@ const App = () => (
             <Route path='/AddDescriptions' element={<AddDescriptions/>} />
             <Route path='/SR' element={<SRPage/>} />
             <Route path='/SignUp' element={<SignUp/>} />
+            <Route path='/settings' element={<SettingsPage/>} />
             <Route path='/AboutPage' element={<AboutPage/>} />
             <Route path="/video-search/:searchQuery" element={<Search />} />
             <Route path="/error" element={<ErrorPage />} />
