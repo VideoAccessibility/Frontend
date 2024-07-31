@@ -18,12 +18,7 @@ const AboutPage = () => {
         <br />
         <Typography width={"70%"}>{aboutWebsite[1]}</Typography>
         <br />
-        <StyledHeading text="This work is supported by grants from" />
-        <Box m={3}>
-        <img src="https://www.nih.gov/sites/all/themes/nih/images/nih-logo-color.png" alt="National Institute of Health Logo" width={"30%"}/>
-        </Box>
-
-        <StyledHeading text="The team behind VidScribe" />
+        <StyledHeading text="People" />
         <Stack
           direction={"row"}
           flexWrap="wrap"
@@ -31,6 +26,7 @@ const AboutPage = () => {
           alignItems="start"
           columnGap={2}
           m={2}
+          mb={4}
         >
           {people.map((item, idx) => (
             <AboutCard
@@ -39,9 +35,14 @@ const AboutPage = () => {
               name={item.name}
               info={item.info}
               email={item.email}
+              site={item.site}
             />
           ))}
         </Stack>
+        <StyledHeading text="Sponsors" />
+        <Box m={3}>
+        <img src="https://www.nei.nih.gov/themes/custom/nei/images/NEI-logo-tagline.svg" alt="National Institute of Health Logo" width={"30%"}/>
+        </Box>
       </Box>
     </Box>
   );

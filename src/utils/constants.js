@@ -13,10 +13,10 @@ export const categories = [
 ];
 
 export const people = [
-  {image:"https://webapp4.asu.edu/photo-ws/directory_photo/pfazli?size=medium&break=1715630896" , name: "Pooyan Fazli", info: "Assistant professor, Arizona State University.", email:"pooyan@asu.edu"},
-  {image:"https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=IAD0fQQAAAAJ&citpid=6" , name: "Hasti Seifi", info: "Assistant professor, Arizona State University", email: "hasti.seifi@asu.edu"},
-  {image:"https://ca.slack-edge.com/T03TLJL4WFM-U05JZGH8U72-a2a6fccf8772-192" , name: "Sina Elahimanesh", info:"Undergraduate Researcher, Arizona State University"},
-  {image:"https://media.licdn.com/dms/image/C5603AQHE8rNO86axFw/profile-displayphoto-shrink_400_400/0/1663634479068?e=1721260800&v=beta&t=42Go2ZZ-vrjDowMbttdK48wVdNi7rqU2NQqyVaw3fRI" , name: "Maryam Saadat Cheema", info:"Graduate Researcher, Arizona State University"},
+  {image:"https://media.licdn.com/dms/image/C5603AQHE8rNO86axFw/profile-displayphoto-shrink_200_200/0/1663634479068?e=1727913600&v=beta&t=qA_QhDtGP6B1vUljHLSLhhehJkIPXbYYEvLG6yEjpxY", name: "Maryam S Cheema", info:"Arizona State University"},
+  {image:"https://media.licdn.com/dms/image/D4D03AQHfxJERdOpCqw/profile-displayphoto-shrink_800_800/0/1720546929013?e=1727913600&v=beta&t=y4C3czpvBgqllkQFyBcUrZa_w-7TSWrhXEkKPKdyKeQ" , name: "Sina Elahimanesh", info:"Arizona State University"},
+  {image:"https://webapp4.asu.edu/photo-ws/directory_photo/pfazli?size=medium&break=1715630896" , name: "Pooyan Fazli", info: "Arizona State University.", email:"pooyan@asu.edu", site:"https://pooyanfazli.com/"},
+  {image:"https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=IAD0fQQAAAAJ&citpid=6" , name: "Hasti Seifi", info: "Arizona State University", email: "hasti.seifi@asu.edu", site:"https://hastiseifi.com/"},
 ]
 
 export const aboutWebsite = ["Welcome to VidScribe, a platform designed specficically to empower blind and low vision users to create AI audio descriptions for videos. On Vidscribe, you can upload videos or paste a link of a youtube video to be described. After a while, a described video will be visible on the homepage. The audio descriptions are generated using a vision language model.",
