@@ -36,6 +36,7 @@ const AboutPage = () => {
               info={item.info}
               email={item.email}
               site={item.site}
+              zoom={item.zoom}
             />
           ))}
         </Stack>

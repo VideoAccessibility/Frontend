@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-export default function MediaCard({ image, name, info, site }) {
+export default function MediaCard({ image, name, info, site, zoom }) {
 
   const handleNameClick = () => {
     if (site) {
@@ -14,9 +13,14 @@ export default function MediaCard({ image, name, info, site }) {
 
   return (
     <Card sx={{ maxWidth: 250, minWidth: 250 }}>
-      <CardMedia
-        sx={{ height: 200, backgroundSize:"contain"}}
-        image={image}
+      <div
+        style={{
+          height: 200,
+          backgroundImage: `url(${image})`,
+          backgroundSize: zoom ? '170%' : 'contain',  // Apply zoom only if the zoom flag is true
+          backgroundPosition: zoom ? '50% 20%' : 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
         title="Image of one of the collaborators for the project"
       />
       <CardContent>
