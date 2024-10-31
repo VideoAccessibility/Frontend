@@ -13,8 +13,8 @@ export const categories = [
 ];
 
 export const people = [
-  {image:"https://media.licdn.com/dms/image/C5603AQHE8rNO86axFw/profile-displayphoto-shrink_200_200/0/1663634479068?e=1727913600&v=beta&t=qA_QhDtGP6B1vUljHLSLhhehJkIPXbYYEvLG6yEjpxY", name: "Maryam S Cheema", info:"Arizona State University", zoom: false},
-  {image:"https://media.licdn.com/dms/image/D4D03AQHfxJERdOpCqw/profile-displayphoto-shrink_800_800/0/1720546929013?e=1727913600&v=beta&t=y4C3czpvBgqllkQFyBcUrZa_w-7TSWrhXEkKPKdyKeQ" , name: "Sina Elahimanesh", info:"Arizona State University", zoom: true},
+  {image:"https://media.licdn.com/dms/image/v2/C5603AQHE8rNO86axFw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1663634479068?e=1735776000&v=beta&t=aJFmX_R0Fp0-8O5yPoCoxq8Li253ihOCZOzncwuFIQk", name: "Maryam S Cheema", info:"Arizona State University", zoom: false},
+  {image:"https://media.licdn.com/dms/image/v2/D4D03AQFFvlF4uARqxQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729888171070?e=1735776000&v=beta&t=0ghICC39Llvz2NTj79bMVFLLEj41XmoFE10d-HGmPrM" , name: "Sina Elahimanesh", info:"Arizona State University", zoom: true},
   {image:"https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=IAD0fQQAAAAJ&citpid=6" , name: "Hasti Seifi", info: "Arizona State University", email: "hasti.seifi@asu.edu", site:"https://hastiseifi.com/", zoom: false},
   {image:"https://pooyanfazli.com/images/PooyanFazli.jpg" , name: "Pooyan Fazli", info: "Arizona State University.", email:"pooyan@asu.edu", site:"https://pooyanfazli.com/", zoom: false},
 ]

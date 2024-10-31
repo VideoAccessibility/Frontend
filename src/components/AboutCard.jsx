@@ -17,8 +17,8 @@ export default function MediaCard({ image, name, info, site, zoom }) {
         style={{
           height: 200,
           backgroundImage: `url(${image})`,
-          backgroundSize: zoom ? '170%' : 'contain',  // Apply zoom only if the zoom flag is true
-          backgroundPosition: zoom ? '50% 20%' : 'center',
+          backgroundSize: zoom ? '180%' : 'contain',  // Apply zoom only if the zoom flag is true
+          backgroundPosition: zoom ? '50% 0%' : 'center',
           backgroundRepeat: 'no-repeat',
         }}
         title="Image of one of the collaborators for the project"
