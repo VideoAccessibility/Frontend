@@ -13,7 +13,7 @@ const AboutPage = () => {
         m={2}
         // sx={{ flexGrow: 1, p: 2, paddingTop:10, width: { sm: `calc(100% - ${drawerWidth}px)` }}}
       >
-        <StyledHeading text="About VidScribe" />
+        <StyledHeading text="About ViDScribe" />
         <Typography width={"70%"}>{aboutWebsite[0]}</Typography>
         <br />
         <Typography width={"70%"}>{aboutWebsite[1]}</Typography>
